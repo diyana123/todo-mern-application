@@ -5,9 +5,8 @@ In the project directory, you can run:
 
 ## Create Project 
 
-To start a new Create React App project with TypeScript, you can run:
 
-`npx create-react-app client`
+npm create vite@latest projectName -- --template react
 
 ## Install tailwind css
 
@@ -96,3 +95,5 @@ npm i cookie-parser
 npm i jsonwebtoken
 
 npm i dayjs
+
+npm i react-toastify

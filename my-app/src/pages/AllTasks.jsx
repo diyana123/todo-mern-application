@@ -6,20 +6,11 @@ import customFetch from '../utils/customFetch';
 import { useLoaderData } from 'react-router-dom';   
 import { useContext,createContext } from 'react';  
 
-// export const loader = async () => {
-//     try {
-//         const {data} = await axios.get('/api/v1/jobs');
-//         console.log('Data from API:', data);
-//         return {data}
-//     }catch (error) {
-//         toast.error(error?.response?.data?.msg);
-//         return error;
-//     }
-// }
+
 
 const AllJobsContext = createContext();
 
-const AllJobs = () => {
+const AllTasks = () => {
 // const {data} = useLoaderData();
 
 const[data,setData] = useState(null);
@@ -28,7 +19,7 @@ useEffect(() => {
     const fetchData = async () => {
       try {
       
-        const response = await axios.get('/api/v1/jobs');
+        const response = await axios.get('/api/v1/tasks');
         console.log('API response:', response);
         setData(response.data);
       } catch (error) {
@@ -51,4 +42,4 @@ useEffect(() => {
 
 export const useAllJobsContext = () => useContext(AllJobsContext);
 
-export default AllJobs
+export default AllTasks

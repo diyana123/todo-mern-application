@@ -63,7 +63,8 @@ setFormData((prevData) => ({...prevData, [name]: value}));
       toast.success('Logged in successfully');
       navigate('/DashboardLayout');
     }catch (error) {
-      toast.error(error?.response?.data?.msg);
+      console.log(error,"errorr");
+      toast.error(error?.response?.data?.error || 'An error occurred');
       console.error(error);
     }
   }

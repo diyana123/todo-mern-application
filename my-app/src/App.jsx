@@ -2,6 +2,7 @@ import { RouterProvider,createBrowserRouter } from 'react-router-dom'
 import {HomeLayout,Landing,Register,Login,DashboardLayout,Error,AddJob,Stats,AllJobs,Profile,Admin} from './pages'
 // import {action as registerAction} from './pages/Register'
 import {action as addJobAction} from './pages/AddJob'
+import AllTasks from './pages/AllTasks'
 // import {loader as allJobsLoader} from './pages/AllJobs'
 
 
@@ -45,8 +46,8 @@ const router = createBrowserRouter([
             element:<Stats />,
           },
           {
-            path:'AllJobs',
-            element:<AllJobs />,
+            path:'AllTasks',
+            element:<AllTasks />,
           },
           {
             path:'Profile',

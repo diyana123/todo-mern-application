@@ -15,22 +15,51 @@ export const register = async (req, res) => {
 };
 
 export const login = async (req, res) => {
-  const user = await User.findOne({ email: req.body.email });
-  const isValidUser =
-    user && (await comparePassword(req.body.password, user.password));
+  try {
+    const user = await User.findOne({ email: req.body.email });
+    const isValidUser =
+      user && (await comparePassword(req.body.password, user.password));
 
-  if (!isValidUser) throw new UnauthenticatedError("invalid credentials");
-const token = createJWT({userId:user._id});
-  // res.send({ token});
-const oneDay = 1000 * 60 * 60 * 24;
+    if (!isValidUser) {
+      throw new UnauthenticatedError("Invalid credentials");
+    }
 
-  res.cookie('token',token,{
-    httpOnly:true,
-    expires:new Date(Date.now()+oneDay),
-    secure:process.env.NODE_ENV === 'production'
-  })
-  res.status(StatusCodes.OK).json({msg:"login success"})
+    const token = createJWT({ userId: user._id });
+    const oneDay = 1000 * 60 * 60 * 24;
+
+    res.cookie('token', token, {
+      httpOnly: true,
+      expires: new Date(Date.now() + oneDay),
+      secure: process.env.NODE_ENV === 'production',
+    });
+
+    res.status(StatusCodes.OK).json({ msg: "Login success" });
+  } catch (error) {
+    // Handle the error when the password is incorrect
+    console.error(error); // Log the error for debugging purposes
+
+    // Respond with an appropriate error message
+    res.status(StatusCodes.UNAUTHORIZED).json({ error: "Invalid credentials" });
+  }
 };
+
+// export const login = async (req, res) => {
+//   const user = await User.findOne({ email: req.body.email });
+//   const isValidUser =
+//     user && (await comparePassword(req.body.password, user.password));
+
+//   if (!isValidUser) throw new UnauthenticatedError("invalid credentials");
+// const token = createJWT({userId:user._id});
+//   // res.send({ token});
+// const oneDay = 1000 * 60 * 60 * 24;
+
+//   res.cookie('token',token,{
+//     httpOnly:true,
+//     expires:new Date(Date.now()+oneDay),
+//     secure:process.env.NODE_ENV === 'production'
+//   })
+//   res.status(StatusCodes.OK).json({msg:"login success"})
+// };
 
 export const logout = (req, res) => {
   res.cookie('token', 'logout', {

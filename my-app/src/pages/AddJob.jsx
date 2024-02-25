@@ -22,9 +22,9 @@ export const action = async ({request}) => {
     
   
     try{
-      await customFetch.post('/jobs',data)
+      await customFetch.post('/tasks',data)
       toast.success('Task added succesfully')
-      return redirect('allJobs');
+      return redirect('allTasks');
     }catch (error) {
       toast.error(error?.response?.data?.msg);
       return error;
@@ -42,10 +42,11 @@ return (
         <h4 className="form-title">Add Task</h4>
         <div className="form-center">
      
+        <input type="text" name="task" placeholder="Input Task" />
         
           <FormRowSelect
-            labeltext="job status"
-            name="jobStatus"
+            labeltext="Status of the Task"
+            name="toDoStatus"
             defaultValue={TASK_STATUS.PENDING}
             list={Object.values(TASK_STATUS)}
             

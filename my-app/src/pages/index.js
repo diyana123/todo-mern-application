@@ -4,7 +4,7 @@ export {default as DashboardLayout} from './DashboardLayout';
 export {default as AddJob} from './AddJob';
 export {default as Admin} from './Admin';
 export {default as HomeLayout} from './HomeLayout';
-export {default as AllJobs} from './AllJobs';
+export {default as AllTasks} from './AllTasks';
 export {default as Register} from './Register';
 export {default as Login} from './Login';
 export {default as Landing} from './Landing';
