@@ -1,25 +1,78 @@
-import logo from './logo.svg';
-import './App.css';
+import { RouterProvider,createBrowserRouter } from 'react-router-dom'
+import {HomeLayout,Landing,Register,Login,DashboardLayout,Error,AddJob,Stats,AllJobs,Profile,Admin} from './pages'
+// import {action as registerAction} from './pages/Register'
+import {action as addJobAction} from './pages/AddJob'
+// import {loader as allJobsLoader} from './pages/AllJobs'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+
+
+
+const router = createBrowserRouter([
+  {
+    path:'/',
+    element:<HomeLayout />,
+    errorElement:<Error />,
+    children : [
+      {
+        index:true,
+        element:<Landing />,
+      },
+      {
+        path:'Register',
+        element:<Register />,
+        // action : () => {
+        //   console.log('hello')
+        // }
+        // action:registerAction,
+      },
+      {
+        path:'Login',
+        element:<Login />,
+      },
+      {
+        path:'DashboardLayout',
+        element:<DashboardLayout />,
+       
+        children : [
+          {
+            index:true,
+            element:<AddJob />,
+            action:addJobAction
+          },
+          {
+            path:'Stats',
+            element:<Stats />,
+          },
+          {
+            path:'AllJobs',
+            element:<AllJobs />,
+          },
+          {
+            path:'Profile',
+            element:<Profile/>,
+            // loader:allJobsLoader
+          },
+          {
+            path:'admin',
+            element:<Admin/>,
+          }
+        ]
+      },
+    ]
+  },
+
+  
+ 
+
+ 
+])
+
+
+const App = () => {
+    return (
+     <RouterProvider router={router} />
+    )
 }
 
-export default App;
+export default App
