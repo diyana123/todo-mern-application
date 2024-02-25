@@ -3,7 +3,8 @@ import { StatusCodes } from "http-status-codes";
 
 //get all tasks
 export const getAllTasks = async (req, res) => {
-  const tasks = await ToDo.find();
+  console.log(req.user)
+  const tasks = await ToDo.find({ createdBy: req.user.userId});
   res.status(StatusCodes.OK).json({ tasks });
 };
 
@@ -21,6 +22,20 @@ export const getTask = async (req, res) => {
 
   res.status(StatusCodes.OK).json({ task });
 };
+
+//update task
+export const updateTask = async (req, res) => {
+  const { id } = req.params;
+
+  const updatedTask = await ToDo.findByIdAndUpdate(id, req.body, {
+    new: true,
+  });
+
+  res.status(StatusCodes.OK).json({ task: updatedTask });
+};
+
+
+
 
 //delete task
 export const deleteTask = async (req, res) => {
