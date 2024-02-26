@@ -7,6 +7,12 @@ export const getAllTasks = async (req, res) => {
   res.status(StatusCodes.OK).json({ tasks });
 };
 
+// export const getAllTasks = async (req, res) => {
+//   console.log(req.user.userId,"user")
+//   const tasks = await ToDo.find({ createdBy: req.user.userId});
+//   res.status(StatusCodes.OK).json({ tasks });
+// };
+
 //create task
 export const createTask = async (req, res) => {
   const task = await ToDo.create(req.body);
@@ -21,6 +27,18 @@ export const getTask = async (req, res) => {
 
   res.status(StatusCodes.OK).json({ task });
 };
+
+//update task
+export const updateTask = async (req, res) => {
+  const { id } = req.params;
+
+  const updatedTask = await ToDo.findByIdAndUpdate(id, req.body, {
+    new: true,
+  });
+
+  res.status(StatusCodes.OK).json({ task: updatedTask });
+};
+
 
 //delete task
 export const deleteTask = async (req, res) => {

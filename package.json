@@ -5,10 +5,10 @@
   "main": "Server.js",
   "type": "module",
   "scripts": {
-    "setup-project": "npm i && cd client && npm i",
+    "setup-project": "npm i && cd my-app && npm i",
     "server": "nodemon server",
-    "client": "cd client && npm start",
-    "start": "concurrently --kill-others-on-fail \" npm run server\" \" npm run client\""
+    "client": "cd my-app && npm run dev",
+    "dev": "concurrently --kill-others-on-fail \" npm run server\" \" npm run client\""
   },
   "keywords": [],
   "author": "",
