@@ -5,7 +5,8 @@ import { UnauthenticatedError } from "../Errors/customErrors.js";
 import { createJWT } from "../utils/tokenUtils.js";
 
 export const register = async (req, res) => {
- 
+  const isFirstAccount = (await User.countDocuments()) === 0;
+  req.body.role = isFirstAccount ? "admin" : "user";
 
   const hashedPassword = await hashPassword(req.body.password);
   req.body.password = hashedPassword;
@@ -24,7 +25,8 @@ export const login = async (req, res) => {
       throw new UnauthenticatedError("Invalid credentials");
     }
 
-    const token = createJWT({ userId: user._id });
+    const token = createJWT({userId:user._id,role:user.role});
+  // res.send({ token});
     const oneDay = 1000 * 60 * 60 * 24;
 
     res.cookie('token', token, {

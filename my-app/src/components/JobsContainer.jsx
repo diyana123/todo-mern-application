@@ -1,6 +1,6 @@
 import React from 'react';
-import Job from './Job';
-import Wrapper from '../assets/wrappers/JobsContainer';
+import { Link, Form } from 'react-router-dom';
+
 import { useAllJobsContext } from '../pages/AllTasks';
 import {FormRowSelect} from '../components';
 import { TASK_STATUS } from "../utils/constants";
@@ -9,15 +9,15 @@ const JobsContainer = () => {
   const data = useAllJobsContext();
 
   if (data && data.tasks) {
-    const jobsArray = data.tasks;
+    const taskArray = data.tasks;
 
-    if (jobsArray.length === 0) {
+    if (taskArray.length === 0) {
       return <p>No Tasks</p>;
     } else {
       return (
         <div>
           {/* Map and render your jobs here */}
-          {jobsArray.map((task) => (
+          {taskArray.map((task) => (
             <div key={task._id}>
               {/* Your job data rendering logic */}
               Task
@@ -31,13 +31,18 @@ const JobsContainer = () => {
             
           />
 
+{/* <Link to={`../edit-job/${task._id}`} className='btn edit-btn'>
+
+          </Link> */}
+        
+
             </div>
           ))}
         </div>
       );
     }
   } else {
-    return <p>The 'jobs' property is not present in the data or is undefined.</p>;
+    return <p>The task property is not present in the data or is undefined.</p>;
   }
 };
 

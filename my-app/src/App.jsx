@@ -1,7 +1,19 @@
 import { RouterProvider,createBrowserRouter } from 'react-router-dom'
-import {HomeLayout,Landing,Register,Login,DashboardLayout,Error,AddJob,Stats,AllTasks,Profile,Admin} from './pages'
-import {action as addJobAction} from './pages/AddJob'
+import {HomeLayout,Landing,Register,Login,DashboardLayout,Error,AddTask,AllTasks} from './pages'
+// import EditTask from './pages/EditTask'
+import {action as addTaskAction} from './pages/AddTask'
+// import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+// import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+// import { loader as editJobLoader } from './pages/EditTask';
+// import { action as editJobAction } from './pages/EditTask';
 
+// const queryClient = new QueryClient({
+//   defaultOptions: {
+//     queries: {
+//       staleTime: 1000 * 60 * 5,
+//     },
+//   },
+// });
 
 
 
@@ -37,26 +49,25 @@ const router = createBrowserRouter([
         children : [
           {
             index:true,
-            element:<AddJob />,
-            action:addJobAction
+            element:<AddTask />,
+            action:addTaskAction
           },
-          {
-            path:'Stats',
-            element:<Stats />,
-          },
+         
           {
             path:'AllTasks',
             element:<AllTasks />,
           },
-          {
-            path:'Profile',
-            element:<Profile/>,
-           
-          },
-          {
-            path:'admin',
-            element:<Admin/>,
-          }
+
+         
+
+          // {
+          //   path: 'edit-job/:id',
+          //   element: <EditTask />,
+          //   loader: editJobLoader(queryClient),
+          //   action: editJobAction(queryClient),
+          // },
+         
+         
         ]
       },
     ]
@@ -71,7 +82,10 @@ const router = createBrowserRouter([
 
 const App = () => {
     return (
-     <RouterProvider router={router} />
+      // <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    //   <ReactQueryDevtools initialIsOpen={false} />
+    // </QueryClientProvider>
     )
 }
 

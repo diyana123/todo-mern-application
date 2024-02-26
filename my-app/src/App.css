@@ -184,6 +184,9 @@ ul {
   text-transform: capitalize;
   display: inline-block;
 }
+.logo{
+  width:50px;
+}
 .btn:hover {
   background: var(--primary-700);
   box-shadow: var(--shadow-3);

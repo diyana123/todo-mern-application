@@ -3,10 +3,15 @@ import { StatusCodes } from "http-status-codes";
 
 //get all tasks
 export const getAllTasks = async (req, res) => {
-  console.log(req.user)
-  const tasks = await ToDo.find({ createdBy: req.user.userId});
+  const tasks = await ToDo.find();
   res.status(StatusCodes.OK).json({ tasks });
 };
+
+// export const getAllTasks = async (req, res) => {
+//   console.log(req.user.userId,"user")
+//   const tasks = await ToDo.find({ createdBy: req.user.userId});
+//   res.status(StatusCodes.OK).json({ tasks });
+// };
 
 //create task
 export const createTask = async (req, res) => {
@@ -33,8 +38,6 @@ export const updateTask = async (req, res) => {
 
   res.status(StatusCodes.OK).json({ task: updatedTask });
 };
-
-
 
 
 //delete task

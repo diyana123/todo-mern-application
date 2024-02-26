@@ -66,16 +66,18 @@ export const validateLoginInput = withValidationErrors([
   body('password').notEmpty().withMessage('password is required'),
 ]);
 
-export const validateIdParam = withValidationErrors([ //only the owner of task can modify it
+export const validateIdParam = withValidationErrors([ //only the owner of job can modify it
   param("id").custom(async (value ,{req}) => {
     const isValidId = mongoose.Types.ObjectId.isValid(value);
     if (!isValidId) throw new Error("invalid MongoDB id");
-    const task = await ToDo.findById(value);
-    if (!task) throw new NotFoundError(`no task with id : ${value}`);
-   
+    const job = await Job.findById(value);
+    if (!job) throw new NotFoundError(`no job with id : ${value}`);
+    // console.log(job)
+    const isAdmin = req.user.role === 'admin'
+    const isOwner = req.user.userId === job.createdBy.toString()
+    if (!isAdmin && !isOwner) throw new UnauthorizedError('not authorized to access this route')
   }),
 ]);
-
 
 
 

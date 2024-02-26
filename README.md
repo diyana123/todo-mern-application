@@ -97,3 +97,7 @@ npm i jsonwebtoken
 npm i dayjs
 
 npm i react-toastify
+
+npm install react-redux redux
+
+npm i redux-thunk

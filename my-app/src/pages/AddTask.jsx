@@ -11,12 +11,7 @@ export const action = async ({request}) => {
     const formData = await request.formData()
     let data = Object.fromEntries(formData)
 
-    // data = {
-    //   ...data,
-    //   position: data.position || 'DefaultPosition', // Use actual form value or provide a default
-    //   company: data.company || 'DefaultCompany',     // Use actual form value or provide a default
-    //   jobLocation: data.jobLocation || 'DefaultJobLocation',
-    // };
+   
     
 
     
@@ -31,7 +26,7 @@ export const action = async ({request}) => {
     }
   }
 
-const AddJob = () => {
+const AddTask = () => {
   const user = useOutletContext();
   const navigation = useNavigation();
   const isSubmitting = navigation.state === 'submitting';
@@ -65,7 +60,7 @@ return (
   );
 };
 
-export default AddJob;
+export default AddTask;
 
 
 
