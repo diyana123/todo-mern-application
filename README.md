@@ -1,56 +1,20 @@
+# To set up the project
+
+`npm i && cd my-app && npm i`
+
+
 # Getting Started with Create React App
 In the project directory, you can run:
 
-### `npm start`
+### `npm run dev`
 
 ## Create Project 
 
 
 npm create vite@latest projectName -- --template react
 
-## Install tailwind css
 
-`npm install -D tailwindcss`
-`npx tailwindcss init`
-
-update the App.css as follows :
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-update the tailwind.config.js as follows : 
-
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-  ],
-  theme: {
-    extend: {
-      colors: {
-        
-      },
-      fontFamily : {
-        'main-font' : ['poppins', 'sans-serif'],
-      }
-    },
-    screens: {
-      '3xs': '320px',
-      '2xs': '420px',
-      xs: '520px',
-      sm: '640px',
-      md: '768px',
-      '2md': '920px',
-      lg: '1024px',
-      xl: '1280px',
-      '2xl': '1536px',
-      '3xl': '1920px',
-    },
-  },
-  plugins: [],
-};
-
+   
 ## Router
 React Router
 
@@ -98,6 +62,6 @@ npm i dayjs
 
 npm i react-toastify
 
-npm install react-redux redux
+<!-- npm install react-redux redux
 
-npm i redux-thunk
+npm i redux-thunk -->
